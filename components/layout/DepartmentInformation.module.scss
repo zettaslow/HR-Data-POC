@@ -1,0 +1,25 @@
+.departments {
+  display: inline-flex;
+  width: 100%;
+  height: calc(100vh - 300px);
+}
+
+$grape-soda : #bd10e0;
+$blue-raspberry : #4a90e2;
+$mint-toothpaste : #50e3c2;
+$kiwi-green : #b8e986;
+$lime-green : #7ed321;
+$jalapeno-popper : #417505;
+$butternut-squash : #f8e71c;
+$pumpkin-pie : #f5a623;
+
+:export {
+  grapeSoda: $grape-soda;
+  blueRaspberry: $blue-raspberry;
+  mintToothpaste: $mint-toothpaste;
+  kiwiGreen: $kiwi-green;
+  limeGreen: $lime-green;
+  jalapenoPopper: $jalapeno-popper;
+  butternutSquash: $butternut-squash;
+  pumpkinPie: $pumpkin-pie;
+}

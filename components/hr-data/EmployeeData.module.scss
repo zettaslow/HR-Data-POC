@@ -1,0 +1,46 @@
+.employeeData { 
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+
+  .employeeInfo {
+    display: block;
+  }
+
+  div {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  h5 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0px auto 0px auto;
+  }
+}
+
+.employeeInfoTooltip {
+  position: relative;
+
+  .employeeInfoTooltipText {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    top: 120%;
+    left: 50%;
+    margin-left: -60px;
+
+    position: absolute;
+    z-index: 1;
+  }
+}
+
+.employeeInfoTooltip:hover .employeeInfoTooltipText{
+  visibility: visible;
+}
