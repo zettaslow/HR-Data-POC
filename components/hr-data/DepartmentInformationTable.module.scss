@@ -4,6 +4,12 @@
   height: calc(100vh - 300px);
 }
 
+.departmentTable {
+  display: inline-flex;
+  width: 100%;
+  align-content: center;
+}
+
 $grape-soda : #bd10e0;
 $blue-raspberry : #4a90e2;
 $mint-toothpaste : #50e3c2;

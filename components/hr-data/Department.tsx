@@ -2,22 +2,22 @@
 // Holds an Employee object and passes that prop down to the EmployeeData object 
 import styles from "./Department.module.scss";
 import {Employee} from "../../lib/employees";
+import { DepartmentData } from '../../lib/departments';
+import { EmployeeData } from "./EmployeeData";
 
 export interface DepartmentProps {
-  departmentHead: Employee;
-  departmentName: string;
+  departmentInfo: DepartmentData;
   color: string;
   width: string;
   height: string;
-  children: JSX.Element[];
-  handleClick?: (deptHead: Employee) => void;
+  handleClick?: (departmentHead: Employee) => void;
 }
 
-export default function Department(props: DepartmentProps) {
+export function Department(props: DepartmentProps) {
   return (
     <div 
       className={styles.department} 
-      onClick={() => props.handleClick(props.departmentHead)}
+      onClick={() => props.handleClick(props.departmentInfo.departmentHead)}
       style={
         {
           borderColor: props.color,
@@ -25,7 +25,12 @@ export default function Department(props: DepartmentProps) {
           maxHeight: props.height
         }}
     >
-      {props.children}
+      <EmployeeData 
+        name={props.departmentInfo.departmentHead.firstName + " " + props.departmentInfo.departmentHead.lastName}
+        employeeCount={props.departmentInfo.numEmployees}
+        employeeId={props.departmentInfo.departmentHead.employeeId}
+        department={props.departmentInfo.name}
+      />
     </div>
   )
 }

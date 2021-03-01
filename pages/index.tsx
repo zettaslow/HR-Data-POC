@@ -1,7 +1,5 @@
-// This will get reworked to TS and then to hold the full page layout. 
-
-import MainLayout from "../components/layout/MainLayout"
-import DepartmentInformation from "../components/layout/DepartmentInformation"
+import { MainLayout } from "../components/layout/MainLayout"
+import DepartmentInformation from "../pages/hr-data/DepartmentInformation"
 export default function Home() {
   return (
     <MainLayout>
