@@ -39,7 +39,7 @@ export default class DepartmentInformation extends React.Component<DepartmentInf
       <DepartmentInformationTable
         departmentInfo={this.buildDepartmentData(this.state.currentHeadEmployee)}
         currentHeadEmployee={this.state.currentHeadEmployee}
-        totalPages={Math.floor(this.state.currentHeadEmployee.reports.length / 8.0)}
+        totalPages={Math.ceil(this.state.currentHeadEmployee.reports.length / 8.0)}
         handleCurrentEmployeeChange={this.handleCurrentHeadEmployeeChange}
       />
     )

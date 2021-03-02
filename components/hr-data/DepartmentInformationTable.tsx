@@ -10,6 +10,7 @@ import { Department } from '../../components/hr-data/Department';
 import styles from "./DepartmentInformationTable.module.scss";
 import { Employee } from '../../lib/employees';
 import { PageButton } from '../../components/navigation/PageButton';
+import { useDepartmentDataSlice } from '../../util/employeeDataUtils';
 
 enum ColorEnums {
   grapeSoda = 0,
@@ -29,12 +30,28 @@ export interface DepartmentInformationTableProps {
   handleCurrentEmployeeChange: (employee: Employee) => void;
 }
 
+const buildEmployeeData = (departments: DepartmentData[], deptClickHandler: (deptHead: Employee) => void) => {
+  return departments.map((department, index) => {
+    return (
+      <Department 
+        departmentInfo={department}
+        color={Colors[ColorEnums[index % (Object.keys(ColorEnums).length / 2)]]}
+        width={calcWidth(department.numEmployees, departments[0].numEmployees)}
+        height={calcHeight(index)}
+        key={department.departmentHead.employeeId}
+        handleClick={deptClickHandler}
+      />
+    )
+  })
+}
+
 export default function DepartmentInformationTable(props: DepartmentInformationTableProps) {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const deptData = useDepartmentDataSlice(props.departmentInfo, props.currentHeadEmployee, currentPage);
 
   const onDepartmentClick = (departmentHead: Employee) => {
     if (departmentHead.reports.length !== 0) {
-      setCurrentPage(0);
+      setCurrentPage(1);
       props.handleCurrentEmployeeChange(departmentHead);
     }
   }
@@ -54,29 +71,11 @@ export default function DepartmentInformationTable(props: DepartmentInformationT
     }
   }
 
-  const buildEmployeeData = (departments: DepartmentData[], pageNum: number): JSX.Element[] => {
-    const pageIndexStart = pageNum * 8;
-    const pageIndexEnd = pageIndexStart + 8 > props.currentHeadEmployee.reports.length ? props.currentHeadEmployee.reports.length : pageIndexStart + 8;
-    const highestEmp = departments[pageIndexStart].numEmployees;
-    return departments.slice(pageIndexStart, pageIndexEnd).map((department, index) => {
-      return (
-        <Department 
-          departmentInfo={department}
-          color={Colors[ColorEnums[index % (Object.keys(ColorEnums).length / 2)]]}
-          width={calcWidth(department.numEmployees, highestEmp)}
-          height={calcHeight(index)}
-          key={department.departmentHead.employeeId}
-          handleClick={onDepartmentClick}
-        />
-      );
-    });
-  }
-
   return (
     <div>
       <h2>Departments</h2>
       <div className={styles.departmentTable}>
-        {currentPage > 0 ? 
+        {currentPage > 1 ? 
           <PageButton
             direction={"LEFT"}
             handleClick={onPageClick}
@@ -85,7 +84,7 @@ export default function DepartmentInformationTable(props: DepartmentInformationT
           ""
         }
         <div className={styles.departments}>
-          {buildEmployeeData(props.departmentInfo, currentPage)}
+          {buildEmployeeData(deptData, onDepartmentClick)}
         </div>
         {currentPage < props.totalPages ? 
           <PageButton
