@@ -1,14 +1,14 @@
-This is an interview project I've done that displays HR Data based out of a JSON file in a React Data Visualization
+This is an interview project I've done that displays HR Data based out of a JSON file in a React Data Visualization. As a user you can click into departments to view hierarchical organization data of employees, departments, and number of direct reports. 
 
-# Startup Instructions
+This was built in Next.js, SASS and React components I've built myself.
 
-I've compiled the prod version already, it can be run from the `out` folder with:
+## Demo Preview
 
-```bash
-npx http-server -o http://localhost:8080/index.html
-```
+![hr-data-demo](https://i.imgur.com/L8UPU4W.gif)
 
-or you can try running the dev build with
+## Startup Instructions
+
+You can try running the dev build with
 
 ```bash
 npm run dev
